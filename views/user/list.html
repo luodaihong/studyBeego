@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	{{template "static.html" .}}
+</head>
+
+<body>
+	<div class='container'>
+		<a class="btn btn-default" style="margin-bottom:20px;" href='{{ urlfor "HtmlUserController.Add" }}' role="button">增加 <span class="glyphicon glyphicon-plus"></span></a>
+	    	<table class="table table-bordered table-hover tableSorter">
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Email</th>
+				<th>Action</th>
+			</tr>
+			{{ range .users }}
+			<tr>
+				<td>{{ .Id }}</td>
+				<td><a href='{{ urlfor "HtmlUserController.Detail" "id" .Id }}'>{{ .Name }}</a></td>
+				<td>{{ .Age }}</td>
+				<td>{{ .Email }}</td>
+				<td>
+					<a href='{{ urlfor "HtmlUserController.Delete" "id" .Id }}' style="margin-right:20px;">删除<span class="glyphicon glyphicon-remove"></span></a>
+					<a href='{{ urlfor "HtmlUserController.Edit" "id" .Id }}'>编辑<span class="glyphicon glyphicon-edit"></span></a>
+				</td>
+			</tr>
+			{{ end }}
+		</table>
+	</div>
+</body>
+</html>
