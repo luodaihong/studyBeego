@@ -7,6 +7,16 @@
 </head>
 
 <body>
+	<div class="row" style="margin-bottom:50px;">
+		<div class="pull-right" style="margin-right:45px;">
+			<span class="glyphicon glyphicon-user" style="margin-right:15px;">{{ .loginUser }}</span>
+			{{  if .loginUser }}
+			<a href='{{ urlfor "AuthController.Logout" }}'>
+				<span class="glyphicon glyphicon-log-out"></span>
+			</a>
+			{{ end }}
+		</div>
+	</div>
 	<ul class="list-group">
 		<li class="list-group-item">ID: {{ .user.Id }}</li>
 		<li class="list-group-item">Name: {{ .user.Name }}</li>

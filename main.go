@@ -3,6 +3,8 @@ package main
 import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
+	//"github.com/astaxie/beego/session"
+	//_ "github.com/astaxie/beego/session/memcache"
 	_ "github.com/go-sql-driver/mysql"
 	"studyBeego/models"
 	_ "studyBeego/routers"

@@ -8,6 +8,17 @@
 
 <body>
 	<div class='container'>
+		<div class="row" style="margin-bottom:50px;">
+		<div class="pull-right" style="margin-right:45px;">
+			<span class="glyphicon glyphicon-user" style="margin-right:15px;">{{ .loginUser }}</span>
+			{{  if .loginUser }}
+			<a href='{{ urlfor "AuthController.Logout" }}'>
+				<span class="glyphicon glyphicon-log-out"></span>
+			</a>
+			{{ end }}
+		</div>
+	</div>
+	
 		<a class="btn btn-default" style="margin-bottom:20px;" href='{{ urlfor "HtmlUserController.Add" }}' role="button">增加 <span class="glyphicon glyphicon-plus"></span></a>
 	    	<table class="table table-bordered table-hover tableSorter">
 			<tr>

@@ -7,7 +7,17 @@
 </head>
 
 <body>
-
+	<div class="row" style="margin-bottom:50px;">
+		<div class="pull-right" style="margin-right:45px;">
+			<span class="glyphicon glyphicon-user" style="margin-right:15px;">{{ .loginUser }}</span>
+			{{  if .loginUser }}
+			<a href='{{ urlfor "AuthController.Logout" }}'>
+				<span class="glyphicon glyphicon-log-out"></span>
+			</a>
+			{{ end }}
+		</div>
+	</div>
+	
 	{{ if .error }}
 	<div class="alert alert-warning alert-dismissible" role="alert">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

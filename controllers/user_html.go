@@ -17,6 +17,7 @@ func (this *HtmlUserController) Prepare() {
 	this.EnableXSRF = false
 	this.orm = orm.NewOrm()
 	this.orm.Using("default")
+	this.Data["loginUser"] = this.GetSession("_username_logined")
 }
 
 func (this *HtmlUserController) Detail() {
