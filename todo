@@ -1,5 +1,4 @@
-1.use memcache , redis as session provider
-2.EnableXSRF
-3.template 嵌套 传递变量,抽出user_logout.html共用代码
-4.unit test
-5.study flash msg
+EnableXSRF
+template 嵌套 传递变量,抽出user_logout.html共用代码
+unit test
+study flash msg
