@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
+	"html/template"
 	_ "studyBeego/models"
 )
 
@@ -12,7 +13,6 @@ type AuthController struct {
 }
 
 func (this *AuthController) Prepare() {
-	this.EnableXSRF = false
 	this.orm = orm.NewOrm()
 	this.orm.Using("default")
 
@@ -20,6 +20,7 @@ func (this *AuthController) Prepare() {
 
 func (this *AuthController) Login() {
 	this.TplName = "login.html"
+	this.Data["xsrfdata"] = template.HTML(this.XSRFFormHTML())
 
 	if this.Ctx.Request.Method == "POST" {
 		name := this.GetString("name", "")

@@ -5,6 +5,7 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/validation"
+	"html/template"
 	"studyBeego/models"
 )
 
@@ -14,7 +15,6 @@ type HtmlUserController struct {
 }
 
 func (this *HtmlUserController) Prepare() {
-	this.EnableXSRF = false
 	this.orm = orm.NewOrm()
 	this.orm.Using("default")
 	this.Data["loginUser"] = this.GetSession("_username_logined")
@@ -44,6 +44,8 @@ func (this *HtmlUserController) List() {
 
 func (this *HtmlUserController) Add() {
 	this.TplName = "user/add.html"
+	this.Data["xsrfdata"] = template.HTML(this.XSRFFormHTML())
+
 	if this.Ctx.Request.Method == "POST" {
 		u := models.User{}
 		err := this.ParseForm(&u)
@@ -90,6 +92,7 @@ func (this *HtmlUserController) Edit() {
 
 	if this.Ctx.Request.Method == "GET" {
 		this.Data["user"] = u
+		this.Data["xsrfdata"] = template.HTML(this.XSRFFormHTML())
 		this.TplName = "user/edit.html"
 		return
 	}
