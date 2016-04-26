@@ -67,7 +67,7 @@ func (this *HtmlUserController) Add() {
 
 		_, dbError := this.orm.Insert(&u)
 		if dbError == nil {
-			this.Redirect("/htmluser/list", 302)
+			this.Redirect(this.URLFor("HtmlUserController.List"), 302)
 		} else {
 			this.Data["error"] = dbError.Error()
 		}
@@ -123,7 +123,7 @@ func (this *HtmlUserController) Edit() {
 
 	_, dbError := this.orm.Update(&u)
 	if dbError == nil {
-		this.Redirect("/htmluser/list", 302)
+		this.Redirect(this.URLFor("HtmlUserController.List"), 302)
 	} else {
 		this.Data["error"] = dbError.Error()
 		this.Data["user"] = u
@@ -135,5 +135,5 @@ func (this *HtmlUserController) Delete() {
 	u := models.User{}
 	u.Id, _ = this.GetInt("id", 0)
 	this.orm.Delete(&u)
-	this.Redirect("/htmluser/list", 302)
+	this.Redirect(this.URLFor("HtmlUserController.List"), 302)
 }

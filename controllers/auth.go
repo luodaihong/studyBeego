@@ -19,6 +19,11 @@ func (this *AuthController) Prepare() {
 }
 
 func (this *AuthController) Login() {
+	session_user := this.GetSession("_username_logined")
+	if session_user != nil {
+		beego.Debug(session_user, " has logined.")
+		this.Redirect(this.URLFor("HtmlUserController.List"), 302)
+	}
 	this.TplName = "login.html"
 	this.Data["xsrfdata"] = template.HTML(this.XSRFFormHTML())
 
