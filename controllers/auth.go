@@ -48,3 +48,13 @@ func (this *AuthController) Logout() {
 	this.DelSession("_username_logined")
 	this.Redirect(this.URLFor("AuthController.Login"), 302)
 }
+
+type RegexTestController struct {
+	beego.Controller
+}
+
+func (this *RegexTestController) Get() {
+	username := this.Ctx.Input.Param(":username")
+	this.Data["json"] = map[string]interface{}{"status": "success", "username": username}
+	this.ServeJSON()
+}
