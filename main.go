@@ -17,7 +17,7 @@ var LoginFilter = func(this *context.Context) {
 		return
 	}
 
-	_, logined := ctx.Input.Session("_username_logined").(string)
+	_, logined := this.Input.Session("_username_logined").(string)
 	if !logined {
 		this.Redirect(302, "/auth/login")
 	}
