@@ -75,6 +75,9 @@ func (this *HtmlUserController) Add() {
 }
 
 func (this *HtmlUserController) Edit() {
+	this.TplName = "user/edit.html"
+	this.Data["xsrfdata"] = template.HTML(this.XSRFFormHTML())
+
 	id, _ := this.GetInt("id", 0)
 	if id <= 0 {
 		this.Data["error"] = "bad uer id"
@@ -92,8 +95,6 @@ func (this *HtmlUserController) Edit() {
 
 	if this.Ctx.Request.Method == "GET" {
 		this.Data["user"] = u
-		this.Data["xsrfdata"] = template.HTML(this.XSRFFormHTML())
-		this.TplName = "user/edit.html"
 		return
 	}
 
@@ -104,7 +105,6 @@ func (this *HtmlUserController) Edit() {
 	if err != nil {
 		this.Data["error"] = err
 		this.Data["user"] = u
-		this.TplName = "user/edit.html"
 		return
 	}
 
@@ -117,7 +117,6 @@ func (this *HtmlUserController) Edit() {
 		}
 		this.Data["error"] = buffer.String()
 		this.Data["user"] = u
-		this.TplName = "user/edit.html"
 		return
 	}
 
@@ -127,7 +126,6 @@ func (this *HtmlUserController) Edit() {
 	} else {
 		this.Data["error"] = dbError.Error()
 		this.Data["user"] = u
-		this.TplName = "user/edit.html"
 	}
 }
 
