@@ -53,6 +53,10 @@ type RegexTestController struct {
 	beego.Controller
 }
 
+func (this *RegexTestController) Prepare() {
+	this.EnableXSRF = false
+}
+
 func (this *RegexTestController) Get() {
 	username := this.Ctx.Input.Param(":username")
 	this.Data["json"] = map[string]interface{}{"status": "success", "username": username}
