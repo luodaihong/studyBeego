@@ -8,6 +8,7 @@ import (
 	_ "github.com/astaxie/beego/session/redis"
 	_ "github.com/go-sql-driver/mysql"
 	"strings"
+	"studyBeego/controllers"
 	"studyBeego/models"
 	_ "studyBeego/routers"
 )
@@ -28,6 +29,7 @@ func init() {
 	orm.RegisterDataBase("default", "mysql", "test:test@tcp(127.0.0.1:3306)/test?charset=utf8")
 	orm.RegisterModel(new(models.User))
 	beego.InsertFilter("/*", beego.BeforeRouter, LoginFilter)
+	beego.ErrorController(&controllers.ErrorController{})
 }
 
 func main() {
