@@ -1,19 +1,14 @@
-<!DOCTYPE html>
+{{ template "base.html" .}}
 
-<html>
-<head>
-	 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	{{template "static.html" .}}
-</head>
+{{ define "css" }}{{ end }}
 
-<body>
-	{{template "user_logout.html" .}}
-	
+{{ define "content" }}
 	<div class="alert alert-warning alert-dismissible" role="alert">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		<strong>Warning!</strong> {{ .error }}
 		<br>
 		<a href='{{ urlfor "HtmlUserController.List" }}'>返回 <span class="glyphicon glyphicon-hand-left"></span></a>
 	</div>
-</body>
-</html>
+{{ end }}
+
+{{ define "js" }}{{ end }}

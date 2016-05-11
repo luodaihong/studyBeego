@@ -1,14 +1,8 @@
-<!DOCTYPE html>
+{{ template "base.html" .}}
 
-<html>
-<head>
-	 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	{{template "static.html" .}}
-</head>
+{{ define "css" }}{{ end }}
 
-<body>
-	{{template "user_logout.html" .}}
-
+{{ define "content" }}
 	<ul class="list-group">
 		<li class="list-group-item">ID: {{ .user.Id }}</li>
 		<li class="list-group-item">Name: {{ .user.Name }}</li>
@@ -16,5 +10,6 @@
 		<li class="list-group-item">Email: {{ .user.Email }}</li>
 		<li class="list-group-item"><a href='{{ urlfor "HtmlUserController.List" }}'>返回 <span class="glyphicon glyphicon-hand-left"></span></a></li>
 	</ul>
-</body>
-</html>
+{{ end }}
+
+{{ define "js" }}{{ end }}

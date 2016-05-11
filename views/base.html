@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="/static/bootstrap3/css/bootstrap.min.css" />
+	<!-- 必要的js前置,避免body中有直接执行的js报错  -->
+	<script type="text/javascript" src="/static/js/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="/static/bootstrap3/js/bootstrap.min.js"></script>
+	{{ template "css" . }}
+</head>
+
+<body>
+	<div class="row" style="margin-bottom:50px;">
+		<div class="pull-right" style="margin-right:45px;">
+			<span class="glyphicon glyphicon-user" style="margin-right:15px;">{{ .loginUser }}</span>
+			{{  if .loginUser }}
+			<a href='{{ urlfor "AuthController.Logout" }}'>
+				<span class="glyphicon glyphicon-log-out"></span>
+			</a>
+			{{ end }}
+		</div>
+	</div>
+
+	{{ template "content" . }}
+	
+	{{ template "js" . }}
+</body>
+</html>

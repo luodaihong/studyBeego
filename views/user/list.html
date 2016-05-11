@@ -1,15 +1,9 @@
-<!DOCTYPE html>
+{{ template "base.html" .}}
 
-<html>
-<head>
-	 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	{{template "static.html" .}}
-</head>
+{{ define "css" }}{{ end }}
 
-<body>
+{{ define "content" }}
 	<div class='container'>
-		{{template "user_logout.html" .}}
-	
 		<a class="btn btn-default" style="margin-bottom:20px;" href='{{ urlfor "HtmlUserController.Add" }}' role="button">增加 <span class="glyphicon glyphicon-plus"></span></a>
 	    	<table class="table table-bordered table-hover tableSorter">
 			<tr>
@@ -33,5 +27,6 @@
 			{{ end }}
 		</table>
 	</div>
-</body>
-</html>
+{{ end }}
+
+{{ define "js" }}{{ end }}
