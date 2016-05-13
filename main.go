@@ -6,6 +6,7 @@ import (
 	"github.com/astaxie/beego/orm"
 	_ "github.com/astaxie/beego/session/memcache"
 	_ "github.com/astaxie/beego/session/redis"
+	"github.com/astaxie/beego/toolbox"
 	_ "github.com/go-sql-driver/mysql"
 	"strings"
 	"studyBeego/controllers"
@@ -28,6 +29,8 @@ func init() {
 	//beego.BConfig.Log.AccessLogs = true
 	//debug 7, info 6, warning 4, error 3
 	beego.BeeLogger.SetLogger("multifile", `{"filename":"studyBeego.log","level":3,"maxlines":0,"maxsize":0,"daily":true,"maxdays":10}`)
+
+	toolbox.AddHealthCheck("mysql", &controllers.DatabaseCheck{})
 
 	orm.RegisterDriver("mysql", orm.DRMySQL)
 	orm.RegisterDataBase("default", "mysql", "test:test@tcp(127.0.0.1:3306)/test?charset=utf8")
