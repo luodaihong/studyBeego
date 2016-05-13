@@ -25,6 +25,10 @@ var LoginFilter = func(this *context.Context) {
 }
 
 func init() {
+	//beego.BConfig.Log.AccessLogs = true
+	//debug 7, info 6, warning 4, error 3
+	beego.BeeLogger.SetLogger("multifile", `{"filename":"studyBeego.log","level":3,"maxlines":0,"maxsize":0,"daily":true,"maxdays":10}`)
+
 	orm.RegisterDriver("mysql", orm.DRMySQL)
 	orm.RegisterDataBase("default", "mysql", "test:test@tcp(127.0.0.1:3306)/test?charset=utf8")
 	orm.RegisterModel(new(models.User))
