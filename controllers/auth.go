@@ -36,7 +36,7 @@ func (this *AuthController) Login() {
 				this.Data["error"] = "user not exist."
 			} else {
 				this.SetSession("_username_logined", name)
-				this.Redirect("/htmluser/list", 302)
+				this.Redirect(this.URLFor("HtmlUserController.List"), 302)
 			}
 		} else {
 			this.Data["error"] = "name must equals password, and not null"

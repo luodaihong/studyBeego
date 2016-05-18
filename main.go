@@ -2,28 +2,28 @@ package main
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/context"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/astaxie/beego/session/memcache"
 	_ "github.com/astaxie/beego/session/redis"
 	"github.com/astaxie/beego/toolbox"
 	_ "github.com/go-sql-driver/mysql"
-	"strings"
 	"studyBeego/controllers"
 	"studyBeego/models"
 	_ "studyBeego/routers"
 )
 
-var LoginFilter = func(this *context.Context) {
-	if strings.HasPrefix(this.Input.URL(), "/auth/login") {
-		return
-	}
+// moved to router.go
+//var LoginFilter = func(this *context.Context) {
+//	loginUrl := beego.URLFor("controllers.AuthController.Login")
+//	if strings.HasPrefix(this.Input.URL(), loginUrl) {
+//		return
+//	}
 
-	_, logined := this.Input.Session("_username_logined").(string)
-	if !logined {
-		this.Redirect(302, "/auth/login")
-	}
-}
+//	_, logined := this.Input.Session("_username_logined").(string)
+//	if !logined {
+//		this.Redirect(302, loginUrl)
+//	}
+//}
 
 func init() {
 	//beego.BConfig.Log.AccessLogs = true
@@ -35,7 +35,7 @@ func init() {
 	orm.RegisterDriver("mysql", orm.DRMySQL)
 	orm.RegisterDataBase("default", "mysql", "test:test@tcp(127.0.0.1:3306)/test?charset=utf8")
 	orm.RegisterModel(new(models.User))
-	beego.InsertFilter("/*", beego.BeforeRouter, LoginFilter)
+	//beego.InsertFilter("/*", beego.BeforeRouter, LoginFilter)
 	beego.ErrorController(&controllers.ErrorController{})
 }
 
